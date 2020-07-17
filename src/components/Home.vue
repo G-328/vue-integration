@@ -1,25 +1,27 @@
 <template>
   <div class="home">
-    <day-js/>
+    <nav></nav>
+    <button @click="qwe">跳转</button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DayJs from './pages/DayJs'
 export default {
   name: 'Home',
-  components: {
-    DayJs
-  },
-  props: {
-    // msg: String
-  },
+  components: {},
+  props: {},
   data() {
     return {
     }
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+  },
+  methods: {
+    qwe() {
+      this.$router.push('/RichTextEditor')
+    }
+  },
 }
 </script>
 

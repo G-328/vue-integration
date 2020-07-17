@@ -8,9 +8,8 @@
       >
         {{item}}
       </li>
-      <img src="@assets/logo.png" alt="">
-      <div class="png"></div>
-                
+      <img src="@assets/img/logo.png" alt="">
+      <div class="png"></div>   
     </ul>
   </div>
 </template>
@@ -20,15 +19,16 @@ const path = require('path')  //引入path模块
 
 export default {
   name: "DayJs",
-  props: {
-    msg: String
-  },
+  // props: {
+  //   msg: String
+  // },
   data() {
     return {
       times: [],
     }
   },
   mounted() {
+    console.log("object")
     this.times = [
       new Date(),
       this.$dayJs(),
@@ -66,7 +66,7 @@ export default {
   .png {
     width: 200px;
     height: 200px;
-    background-image: url('~@/assets/logo.png');
+    background-image: url('~@/assets/img/logo.png');
     // background-image: url('../../assets/logo.png');
     background-size: 200px 200px;
   }
