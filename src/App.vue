@@ -6,7 +6,6 @@
 
 <script>
 import Home from './components/Home.vue'
-
 export default {
   name: 'App',
   components: {
@@ -15,15 +14,9 @@ export default {
 }
 </script>
 
-<style>
-  html{
-    width: 100%;
-    height: 100%;
-  }
-  body {
-    width: 100%;
-    height: 100%;
-  }
+<style lang="less">
+@import "@assets/less/common.less";
+@import "@assets/less/public.less";
   #app {
     width: 100%;
     height: 100%;

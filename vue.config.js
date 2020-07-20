@@ -21,6 +21,7 @@ module.exports = {
       alias: {
         vue$: "vue/dist/vue.esm.js", //加上这一句
         '@': resolve('src'),  //主目录
+        '@img': resolve('src/assets/img'),  //图片
         '@assets': resolve('src/assets'),  //图片
       }
     }
@@ -34,7 +35,7 @@ module.exports = {
     // css预设器配置项
     loaderOptions: {},
     // 启用 CSS modules for all css / pre-processor files.
-    requireModuleExtension: false
+    requireModuleExtension: true
   },
 
   // webpack-dev-server 相关配置
