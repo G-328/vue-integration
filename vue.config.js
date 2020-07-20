@@ -28,7 +28,7 @@ module.exports = {
   
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
-    extract: true,
+    // extract: true,
     // 开启 CSS source maps?
     sourceMap: false,
     // css预设器配置项

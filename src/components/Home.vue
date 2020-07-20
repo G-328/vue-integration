@@ -1,15 +1,25 @@
 <template>
   <div class="home">
-    <nav></nav>
-    <button @click="qwe">跳转</button>
-    <router-view></router-view>
+    <el-row class="topMenu">
+      <el-col :span=24 >
+        
+      </el-col>
+    </el-row>
+    <el-row class="bottomMain">
+      <el-col>
+        main
+      </el-col>
+    </el-row>
+    <!-- <day-js/> -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  components: {},
+  components: {
+    DayJs
+  },
   props: {},
   data() {
     return {
@@ -26,6 +36,19 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="less" scoped>
+  .home {
+    width: 100%;
+    height: 100%;
+  }
+  .topMenu {
+    width: 100%;
+    height: 64px;
+    background: red;
+  }
+  .bottomMain {
+    width: 100%;
+    height: calc(100% - 64px);
+    background: pink;
+  }
 </style>

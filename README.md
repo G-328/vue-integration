@@ -1,24 +1,7 @@
-# my-project
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1.准备记录每个页面访问的次数用echarts展示出来
+2.使用路由守卫进行控制路由
+3.使用验证并实现友善的验证提示
+4.mock数据进行交互实现权限控制效果
+5.此版本用百分比进行适配
+6.尽量学习框架配置，优化项目
+8.使用vuex配合持久化插件去管理一些数据

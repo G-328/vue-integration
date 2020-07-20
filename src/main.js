@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import echarts from 'echarts'
 import dayjs from 'dayjs'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
@@ -22,6 +24,8 @@ Vue.use(ElementUI)
 //   template: '<App />',
 //   router,
 // })
+
+Vue.use(ElementUI)
 
 new Vue({
   store,
