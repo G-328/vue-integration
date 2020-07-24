@@ -153,4 +153,14 @@ export default {
     height: calc(100% - 64px);
     background: pink;
   }
+
+.two {
+  width: 500px;
+  height: 100px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>
+  
