@@ -7,11 +7,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import echarts from 'echarts'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
 Vue.prototype.$dayJs = dayjs
 Vue.prototype.$echarts = echarts
+Vue.prototype.$axios = axios
 
 Vue.use(Vuex)
 Vue.use(ElementUI)

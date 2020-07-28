@@ -2,7 +2,7 @@
   <div class="home">
     <el-row class="topMenu">
       <el-col class="header" :span="24">
-        <h1 class="logo">LOGO</h1>
+        <h1 class="logo" @click="one">LOGO</h1>
         <!--  -->
         <el-menu
           :default-active="activeIndex"
@@ -92,6 +92,16 @@ export default {
     handleSelect(key, keyPath) {
       console.log("object")
       console.log(key, keyPath);
+    },
+    one() {
+      this.$axios.get('http://rap2.taobao.org:38080/app/mock/262184/get/user').then(res => {
+        console.log(res)
+        console.log(res.data.code)
+        console.log(res.data.detail)
+        console.log(res.data.detail.name)
+        console.log(res.data.detail.hobby)
+        console.log(res.data.detail.hobby[0])
+      })
     }
   },
 }
