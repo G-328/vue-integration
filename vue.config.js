@@ -43,7 +43,7 @@ module.exports = {
     open: true,                                 //配置自动启动浏览器
     // host: 'localhost',
     host: '0.0.0.0',
-    port: 8080,                                 // 端口号
+    port: 8081,                                 // 端口号
     https: false,
     hotOnly: false,                             // https:{type:Boolean}
     // disableHostCheck: true

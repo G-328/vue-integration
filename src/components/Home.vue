@@ -2,7 +2,7 @@
   <div class="home">
     <el-row class="topMenu">
       <el-col class="header" :span="24">
-        <h1 class="logo">LOGO</h1>
+        <h1 class="logo" @click="one">LOGO</h1>
         <!--  -->
         <el-menu
           :default-active="activeIndex"
@@ -39,8 +39,11 @@
     </el-row>
     <el-row class="bottomMain">
       <el-col>
+        <p @click="three">
+          222
+
+        </p>
         <!-- 1 -->
-        222
       </el-col>
     </el-row>
   </div>
@@ -84,14 +87,78 @@ export default {
           id: "path3",
           children: []
         },
-      ]
+      ],
+      time: false
     }
   },
-  mounted() {},
+  mounted() {
+    
+    // window.addEventListener("onload", () => {
+    //   console.log("onload")
+    //   console.log(this.time)
+
+    // //   debugger
+    // }),
+    // window.addEventListener("onunload", () => {
+    //   console.log("onunload")
+    //   console.log(this.time)
+    
+    // //   debugger
+    // }),
+    // window.addEventListener("onbeforeunload", () => {
+    //   console.log("onbeforeunload")
+    //   console.log(this.time)
+
+    //   debugger
+    // })
+
+    // window.onload = function() {
+    //   // window.localStorage.setItem('sss', 111)
+    //   // window.sessionStorage.setItem("gb", true)
+    //   console.log("onloadqqqqqqqqqqq")
+    //   // debugger
+    // },
+    // window.onunload = function() {
+    //   // clearTimeout(window.cancelTime)
+    //   console.log("onunload-----------")
+    //   debugger
+    // },
+    // window.onbeforeunload = function() {
+    //   // window.localStorage.removeItem('sss')
+    //   // window.cancelTime = setTimeout(() => {
+    //   //   console.log("!1ss")
+    //   // window.localStorage.removeItem('sss')
+    //   // console.log(window.localStorage.removeItem('sss'))
+    //   // }, 500);
+    //   console.log("objonbeforeunloadect")
+    //   debugger
+    // }
+  },
   methods: {
     handleSelect(key, keyPath) {
       console.log("object")
       console.log(key, keyPath);
+    },
+    three() {
+      // console.log(setTimeout(() => {
+      //   console.log("setTimeout")
+      // }, 1000))
+      // console.log(this.time)
+      // return
+      // clearTimeout(this.time)
+    },
+    one() {
+      // this.$axios.get('http://rap2.taobao.org:38080/app/mock/262184/get/user').then(res => {
+      //   console.log(res)
+      //   console.log(res.data.code)
+      //   console.log(res.data.detail)
+      //   console.log(res.data.detail.name)
+      //   console.log(res.data.detail.hobby)
+      //   console.log(res.data.detail.hobby[0])
+      // })
+      // this.time = setTimeout(() => {
+      //   console.log("setTimeout")
+      // }, 1000);
     }
   },
   computed: {
@@ -190,3 +257,4 @@ export default {
     background: pink;
   }
 </style>
+  
