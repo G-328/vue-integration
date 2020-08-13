@@ -7,7 +7,7 @@
 <script>
 import E from 'wangeditor'
 export default {
-  name: '',
+  name: 'RichTextEditor',
   components: {},
   data() {
     return {
