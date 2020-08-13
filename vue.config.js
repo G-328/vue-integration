@@ -58,7 +58,7 @@ module.exports = {
             }
         }
     },                                           // 配置跨域处理,只有一个代理
-    before: app => {}
+    // before: app => {}
   },
 
   // 第三方插件配置

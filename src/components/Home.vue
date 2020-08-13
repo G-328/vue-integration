@@ -26,12 +26,12 @@
             >
               <template slot="title">{{item.name}}</template>
               <template v-for="(item1, index) in item.children">
-                <el-menu-item :index="item1.path">{{item1.name}}</el-menu-item>
+                <el-menu-item :index="item1.path" :key="index">{{item1.name}}</el-menu-item>
               </template>
             </el-submenu>
           </template>
         </el-menu>
-        <!--  -->
+        
         <div class="information">
           等待秋天
         </div>
@@ -114,6 +114,42 @@ export default {
       // }, 1000);
     }
   },
+  computed: {
+    searchData_() {
+      // return this.$store.state.arr
+      console.log("object")
+      console.log(this.$store.state.searchData)
+      return this.$store.state.searchData;
+    }
+  },
+  watch: {
+    searchData_: {
+      handler: function(newVal, oldVal) {
+        console.log("handler")
+        console.log(newVal)
+        let arr = newVal.list
+        this.total = newVal.total
+        if (arr instanceof Array) {
+          if (arr.length > 0) {
+            arr.forEach(item => {
+              item.xinzeng = []
+              JSON.parse(item.ZLX).forEach(item1 => {
+                let arr = []
+                arr.push(item1.FIELD_NAME.toUpperCase())
+                arr.push(item1.FIELD_CN_NAME)
+                item.xinzeng.push(arr)
+              })
+              item.ORIGINAL_QUANTITY = 1
+            })
+            console.log("object")
+            console.log(arr)
+          }
+        }
+      }
+    },
+    deep: true,
+    immediate: true
+  }
 }
 </script>
 
@@ -163,7 +199,7 @@ export default {
         line-height: 64px;
         margin-right: 1%;
         background:-webkit-linear-gradient(90deg,#ACB6E5,#86FDE8);
-        -webkit-background-clip: text;
+        // -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
     }
@@ -173,14 +209,5 @@ export default {
     height: calc(100% - 64px);
     background: pink;
   }
-
-.two {
-  width: 500px;
-  height: 100px;
-  background: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 </style>
   
