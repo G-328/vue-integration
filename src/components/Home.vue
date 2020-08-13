@@ -164,7 +164,7 @@ export default {
     .header {
       width: 100%;
       height: 100%;
-      background-image: url('~@assets/img/nav.png');
+      background-image: url('~@img/nav.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       display: flex;
@@ -199,7 +199,7 @@ export default {
         line-height: 64px;
         margin-right: 1%;
         background:-webkit-linear-gradient(90deg,#ACB6E5,#86FDE8);
-        // -webkit-background-clip: text;
+        -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
     }
@@ -210,4 +210,3 @@ export default {
     background: pink;
   }
 </style>
-  
