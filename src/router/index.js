@@ -8,6 +8,9 @@ import DayJs from '@/components/pages/DayJs.vue'
 import RichTextEditor from '@/components/pages/RichTextEditor.vue'
 import dragLX from '@/components/pages/dragLX.vue'
 
+// 娱乐
+import music from '@/components/pages/entertainment/music.vue'
+
 Vue.use(Router)
 
 // 可解决重复点击报错
@@ -38,6 +41,11 @@ export default new Router({
           path: "/dragLX",
           name: "拖拽",
           component: dragLX
+        },
+        {
+          path: "/music",
+          name: "音乐",
+          component: music
         },
       ]
     },

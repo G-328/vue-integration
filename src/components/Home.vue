@@ -82,11 +82,29 @@ export default {
           children: []
         },
       ],
-      time: false
+      time: false,
+      endTime: 0
     }
   },
-  mounted() {},
+  mounted() {
+    window.addEventListener("scroll", this.$_throttle(this.$_scroll, 1000));
+  },
   methods: {
+    $_throttle(callback, delay) {
+      let startTime = 0
+      return function (event) {
+        let endTime = Date.now()
+        if (endTime - startTime > delay) {
+          console.log(this)
+          console.log(event)
+          callback.call(this, event)
+          startTime = endTime
+        }
+      }
+    },
+    $_scroll() {
+      console.log("$_scroll")
+    },
     handleSelect(key, keyPath) {
       console.log("object")
       console.log(key, keyPath);
@@ -194,7 +212,7 @@ export default {
         }
       }
       .information {
-        background: pink;
+        // background: pink;
         height: 100%;
         line-height: 64px;
         margin-right: 1%;
@@ -206,7 +224,8 @@ export default {
   }
   .bottomMain {
     width: 100%;
-    height: calc(100% - 64px);
-    background: pink;
+    // height: calc(100% - 64px);
+    height: 5000px;
+    // background: pink;
   }
 </style>

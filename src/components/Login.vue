@@ -106,6 +106,7 @@ export default {
       console.log("qweqwe")
       if (e.keyCode === 13) {
         console.log("_keyCode")
+        this.$_login()
       }
     },
   },

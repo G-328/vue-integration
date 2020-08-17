@@ -21,7 +21,7 @@ html{
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   font-family: "楷体";
   color: black;
 }
@@ -52,7 +52,7 @@ button {
 
 // 输入框
 .el-input--small, .el-input--small .el-input__inner {
-  height: 100% !important;
+  // height: 100% !important;
 }
 
 .el-input--small {
@@ -77,4 +77,16 @@ button {
 .el-button:hover {
   border-color: #c72128 !important;
   background-color: #c72128 !important;
+}
+
+// topBtn
+.topBtn {
+  margin-bottom: 10px;
+  .el-button+.el-button {
+    margin-left: 3px;
+  }
+  .el-input {
+    width: 200px;
+    margin: 0 3px;
+  }
 }
