@@ -10,6 +10,7 @@ import dragLX from '@/components/pages/dragLX.vue'
 
 // 娱乐
 import music from '@/components/pages/entertainment/music.vue'
+import movie from '@/components/pages/entertainment/movie.vue'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
           path: "/music",
           name: "音乐",
           component: music
+        },
+        {
+          path: "/movie",
+          name: "电影",
+          component: movie
         },
       ]
     },

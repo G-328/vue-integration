@@ -42,6 +42,15 @@
         <router-view></router-view>
       </div>
     </div>
+    <!-- <div class="playMusic">
+      <div class="img">
+        <img src="@img/1.jpg" alt="加载失败">
+      </div>
+      <div class="song_main">
+        <p>歌曲</p>
+        <p>歌手</p>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -171,7 +180,7 @@ export default {
 }
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
   .home {
     width: 100%;
     height: 100%;
@@ -225,7 +234,31 @@ export default {
   .bottomMain {
     width: 100%;
     // height: calc(100% - 64px);
-    height: 5000px;
+    // height: 5000px;
+    
     // background: pink;
+  }
+  .playMusic {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: pink;
+    .img {
+      height: 100%;
+      flex: 0 0 50px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .singer_main {
+      padding-left: 5px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 </style>
