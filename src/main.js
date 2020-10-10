@@ -18,6 +18,10 @@ Vue.prototype.$axios = axios
 Vue.use(Vuex)
 Vue.use(ElementUI,{ size: 'small'})
 
+router.beforeEach((to, from, next) => {
+  
+})
+
 new Vue({
   store,
   router,
