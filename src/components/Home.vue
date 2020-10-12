@@ -1,9 +1,31 @@
 <template>
-  <div class="home">
-    <el-row class="topMenu">
+  <div class="home-container">
+    <div>
+      
+    </div>
+    <el-menu
+      class="el-menu-demo"
+      :default-active="activeIndex"
+      @select="handleSelect"
+    >
+      <!-- mode="horizontal" -->
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="3" disabled>消息中心</el-menu-item>
+    </el-menu>
+    <!-- <el-row class="topMenu">
       <el-col class="header" :span="24">
-        <h1 class="logo" @click="">LOGO</h1>
-        <!--  -->
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
@@ -36,19 +58,11 @@
           等待秋天
         </div>
       </el-col>
-    </el-row>
-    <div class="bottomMain">
+    </el-row> -->
+
+    <!-- <div class="bottomMain">
       <div>
         <router-view></router-view>
-      </div>
-    </div>
-    <!-- <div class="playMusic">
-      <div class="img">
-        <img src="@img/1.jpg" alt="加载失败">
-      </div>
-      <div class="song_main">
-        <p>歌曲</p>
-        <p>歌手</p>
       </div>
     </div> -->
   </div>
@@ -96,7 +110,7 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("scroll", this.$_throttle(this.$_scroll, 1000));
+    // window.addEventListener("scroll", this.$_throttle(this.$_scroll, 1000));
   },
   methods: {
     $_throttle(callback, delay) {
@@ -104,9 +118,9 @@ export default {
       return function (event) {
         let endTime = Date.now()
         if (endTime - startTime > delay) {
-          console.log(this)
-          console.log(event)
-          callback.call(this, event)
+          // console.log(this)
+          // console.log(event)
+          // callback.call(this, event)
           startTime = endTime
         }
       }
@@ -118,72 +132,54 @@ export default {
       console.log("object")
       console.log(key, keyPath);
     },
-    one(e) {
-      console.log("one")
-      console.log(e.clientY)
-      // console.log(window.event.screenX)
-      // console.log(window.screenLeft)
-      //  window.event.screenX - window.screenLeft;
-      // console.log(document.documentElement.scrollWidth)
-      // console.log(e.screenTop)
-      // console.log(window.screenTop)
-      // console.log(window.screenLeft)
-      // this.$axios.get('http://rap2.taobao.org:38080/app/mock/262184/get/user').then(res => {
-      //   console.log(res)
-      //   console.log(res.data.code)
-      //   console.log(res.data.detail)
-      //   console.log(res.data.detail.name)
-      //   console.log(res.data.detail.hobby)
-      //   console.log(res.data.detail.hobby[0])
-      // })
-      // this.time = setTimeout(() => {
-      //   console.log("setTimeout")
-      // }, 1000);
-    }
   },
-  computed: {
-    searchData_() {
-      // return this.$store.state.arr
-      console.log("object")
-      console.log(this.$store.state.searchData)
-      return this.$store.state.searchData;
-    }
-  },
-  watch: {
-    searchData_: {
-      handler: function(newVal, oldVal) {
-        console.log("handler")
-        console.log(newVal)
-        let arr = newVal.list
-        this.total = newVal.total
-        if (arr instanceof Array) {
-          if (arr.length > 0) {
-            arr.forEach(item => {
-              item.xinzeng = []
-              JSON.parse(item.ZLX).forEach(item1 => {
-                let arr = []
-                arr.push(item1.FIELD_NAME.toUpperCase())
-                arr.push(item1.FIELD_CN_NAME)
-                item.xinzeng.push(arr)
-              })
-              item.ORIGINAL_QUANTITY = 1
-            })
-            console.log("object")
-            console.log(arr)
-          }
-        }
-      }
-    },
-    deep: true,
-    immediate: true
-  }
+  // computed: {
+  //   searchData_() {
+  //     // return this.$store.state.arr
+  //     console.log("object")
+  //     console.log(this.$store.state.searchData)
+  //     return this.$store.state.searchData;
+  //   }
+  // },
+  // watch: {
+  //   searchData_: {
+  //     handler: function(newVal, oldVal) {
+  //       console.log("handler")
+  //       console.log(newVal)
+  //       let arr = newVal.list
+  //       this.total = newVal.total
+  //       if (arr instanceof Array) {
+  //         if (arr.length > 0) {
+  //           arr.forEach(item => {
+  //             item.xinzeng = []
+  //             JSON.parse(item.ZLX).forEach(item1 => {
+  //               let arr = []
+  //               arr.push(item1.FIELD_NAME.toUpperCase())
+  //               arr.push(item1.FIELD_CN_NAME)
+  //               item.xinzeng.push(arr)
+  //             })
+  //             item.ORIGINAL_QUANTITY = 1
+  //           })
+  //           console.log("object")
+  //           console.log(arr)
+  //         }
+  //       }
+  //     }
+  //   },
+  //   deep: true,
+  //   immediate: true
+  // }
 }
 </script>
 
 <style lang="less" scoped>
-  .home {
+  .home-container {
     width: 100%;
     height: 100%;
+
+    .el-meni-demo {
+
+    }
   }
   .topMenu {
     width: 100%;

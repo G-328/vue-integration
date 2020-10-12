@@ -24,12 +24,12 @@ export default new Router({
   // mode: "history", //模式
   routes: [
     {
-      path: "/Login",
+      path: "/login",
       name: "登录",
       component: Login
     },
     {
-      path: "/Home",
+      path: "/home",
       name: "首页",
       component: Home,
       children: [

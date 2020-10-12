@@ -8,20 +8,11 @@ html{
   color: black;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  min-width: 1280px;
-  @media screen and (min-width:1280px) and (max-width:1369px){font-size:12px;}
-  @media screen and (min-width:1369px) and (max-width:1440px){font-size:14px;}
-  @media screen and (min-width:1441px) and (max-width:1600px){font-size:14px;}
-  @media screen and (min-width:1601px) and (max-width:1800px){font-size:16px;}
-  @media screen and (min-width:1801px) and (max-width:1920px){font-size:16px;}
-  @media screen and (min-width:1921px){font-size: 20px;}
 }
 
 body {
   width: 100%;
   height: 100%;
-  // overflow: hidden;
   font-family: "楷体";
   color: black;
 }
@@ -51,42 +42,7 @@ button {
 }
 
 // 输入框
-.el-input--small, .el-input--small .el-input__inner {
-  // height: 100% !important;
-}
-
-.el-input--small {
-  .el-input__inner:focus {
-    border-color: red;
-  }
-  .el-input__suffix {
-    .el-input__suffix-inner {
-      height: 100%;
-    }
-  }
-}
 
 // 按钮
-.el-button {
-  border-color: #c72128 !important;
-  background-color: #c72128 !important;
-  span {
-    color: #ffffff;
-  }
-}
-.el-button:hover {
-  border-color: #c72128 !important;
-  background-color: #c72128 !important;
-}
 
 // topBtn
-.topBtn {
-  margin-bottom: 10px;
-  .el-button+.el-button {
-    margin-left: 3px;
-  }
-  .el-input {
-    width: 200px;
-    margin: 0 3px;
-  }
-}
