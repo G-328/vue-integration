@@ -73,7 +73,7 @@ export default {
     return {
       one: "12",
       arr: [],
-      url: require("../assets/img/zc.png")
+      // url: require("../assets/img/zc.png")
     }
   },
   methods: {

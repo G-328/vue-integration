@@ -1,17 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Login from '@/components/Login.vue'
-import Home from '@/components/Home.vue'
-
-import DayJs from '@/components/pages/DayJs.vue'
-import RichTextEditor from '@/components/pages/RichTextEditor.vue'
-import dragLX from '@/components/pages/dragLX.vue'
-
-// 娱乐
-import music from '@/components/pages/entertainment/music.vue'
-import movie from '@/components/pages/entertainment/movie.vue'
-
 Vue.use(Router)
 
 // 可解决重复点击报错
@@ -26,34 +15,74 @@ export default new Router({
     {
       path: "/login",
       name: "登录",
-      component: Login
+      component: () => import('@/components/pages/login')
     },
     {
       path: "/home",
-      name: "首页",
-      component: Home,
+      component: () => import('@/components/pages/home'),
       children: [
         {
-          path: "/RichTextEditor",
-          name: "富文本编辑器",
-          component: RichTextEditor
+          path: "homePage",
+          name: "主页",
+          component: () => import('@/components/pages/personalCenter/homePage'),
         },
         {
-          path: "/dragLX",
-          name: "拖拽",
-          component: dragLX
+          path: "statistical",
+          name: "统计",
+          component: () => import('@/components/pages/personalCenter/statistical'),
         },
         {
-          path: "/music",
-          name: "音乐",
-          component: music
+          path: "editor",
+          name: "编辑器",
+          component: () => import('@/components/pages/editor/RichTextEditor'),
         },
         {
-          path: "/movie",
-          name: "电影",
-          component: movie
+          path: "date",
+          name: "时间",
+          component: () => import('@/components/pages/date/DayJs'),
+        },
+        {
+          path: "dataView",
+          name: "数据可视化",
+          component: () => import('@/components/pages/dataView/index'),
+        },
+        {
+          path: "entertainment",
+          name: "娱乐",
+          component: () => import('@/components/pages/entertainment'),
+          children: [
+            {
+              path: "game",
+              name: "游戏",
+              component: () => import('@/components/pages/entertainment/game'),
+            },
+            {
+              path: "music",
+              name: "音乐",
+              component: () => import('@/components/pages/entertainment/music'),
+            },
+            {
+              path: "movie",
+              name: "电影",
+              component: () => import('@/components/pages/entertainment/movie'),
+            },
+            {
+              path: "TVseries",
+              name: "TVseries",
+              component: () => import('@/components/pages/entertainment/TVseries'),
+            },
+          ]
         },
       ]
     },
+    {
+      path: "/404",
+      name: "404",
+      component: () => import('@/components/common/404')
+    },
+    { 
+      path: '*',
+      redirect: '/404',
+    }
   ]
 })
