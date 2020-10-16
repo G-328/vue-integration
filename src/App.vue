@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "@assets/less/common.less";
+// @import "@assets/less/common.less";
 @import "@assets/less/public.less";
   #app {
     width: 100%;

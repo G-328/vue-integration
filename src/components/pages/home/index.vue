@@ -1,9 +1,34 @@
 <template>
   <div class="home-container">
-    <sidebar  class="sidebar-container" />
+    <sidebar class="sidebar-container" />
     <div class="main-container">
-      <top-nav></top-nav>
-      <div>
+      <div class="setting">
+        <div>
+          <span>是否固定头部</span>
+          <el-switch
+            @change="fixedHeaderC"
+            :value="fixedHeader"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </div>
+        <div>
+          <span class="qwer">是否启用导航条</span>
+          <el-switch
+            @change="navBarC"
+            :value="navBar"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </div>
+      </div>
+      <top-nav
+        class="main-top"
+        :class="{fixedHeader: fixedHeader}"
+      />
+      <div class="main-content">
         <router-view></router-view>
       </div>
     </div>
@@ -11,6 +36,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Sidebar from './sidebar'
 import TopNav from './topNav'
 export default {
@@ -24,65 +50,22 @@ export default {
       arr: []
     }
   },
-  mounted() {},
+  computed: {
+    ...mapState({
+      fixedHeader: state => state.fixedHeader,
+      navBar: state => state.navBar,
+    })
+  },
+  watch: {},
   methods: {
-    $_throttle(callback, delay) {
-      let startTime = 0
-      return function (event) {
-        let endTime = Date.now()
-        if (endTime - startTime > delay) {
-          this.arr.length
-          // console.log(this)
-          // console.log(event)
-          // callback.call(this, event)
-          startTime = endTime
-        }
-      }
+    fixedHeaderC() {
+      this.$store.commit("SET_FIXEDHEADER")
     },
-    $_scroll() {
-      console.log("$_scroll")
-    },
-    handleSelect(key, keyPath) {
-      console.log("object")
-      console.log(key, keyPath);
+    navBarC() {
+      this.$store.commit("SET_NAVBAR")
     },
   },
-  // computed: {
-  //   searchData_() {
-  //     // return this.$store.state.arr
-  //     console.log("object")
-  //     console.log(this.$store.state.searchData)
-  //     return this.$store.state.searchData;
-  //   }
-  // },
-  // watch: {
-  //   searchData_: {
-  //     handler: function(newVal, oldVal) {
-  //       console.log("handler")
-  //       console.log(newVal)
-  //       let arr = newVal.list
-  //       this.total = newVal.total
-  //       if (arr instanceof Array) {
-  //         if (arr.length > 0) {
-  //           arr.forEach(item => {
-  //             item.xinzeng = []
-  //             JSON.parse(item.ZLX).forEach(item1 => {
-  //               let arr = []
-  //               arr.push(item1.FIELD_NAME.toUpperCase())
-  //               arr.push(item1.FIELD_CN_NAME)
-  //               item.xinzeng.push(arr)
-  //             })
-  //             item.ORIGINAL_QUANTITY = 1
-  //           })
-  //           console.log("object")
-  //           console.log(arr)
-  //         }
-  //       }
-  //     }
-  //   },
-  //   deep: true,
-  //   immediate: true
-  // }
+  mounted() {},
 }
 </script>
 
@@ -91,15 +74,55 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+
     .sidebar-container {
       width: 210px;
       height: 100%;
       background-color:rgb(48, 65, 86);
+
+      position: fixed;
     }
+
     .main-container {
       width: calc(100% - 210px);
       height: 100%;
-      // background: #f5f5d5;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      margin-left: 210px;
+
+
+      .setting {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        background: pink;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .main-top {
+        width: 100%;
+      }
+
+      .fixedHeader {
+        // width: calc(100% - 210px);
+        position: fixed;
+        margin-top: 0;
+        margin-right: 0;
+        // top: 0;
+        // left: 0;
+        // right: 0;
+      }
+
+      .main-content {
+        width: 100%;
+        height: calc(100% - 84px);
+        background-color: #f0f2f5;
+        margin-top: 84px;
+      }
     }
   }
 </style>

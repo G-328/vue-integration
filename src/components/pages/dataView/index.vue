@@ -18,7 +18,7 @@
         <g>
           <title>Layer 1</title>
           <!-- xlink -->
-          <image :href="url"></image>
+          <!-- <image :href="url"></image> -->
           <!-- 数据服务的那些圆 -->
           <ellipse fill="#e3f9cc" stroke="#0f0f00" stroke-width="1.5" stroke-opacity="0" fill-opacity="null" cx="409" cy="514.5" id="svg_5" rx="21" ry="21.5" opacity="100"/>
           <ellipse fill="#fff" stroke-width="0" cx="483" cy="471" id="svg_6" rx="20.5" ry="22" opacity="100" filter="url(#svg_6_blur)"/>

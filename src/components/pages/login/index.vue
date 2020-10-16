@@ -107,20 +107,6 @@ export default {
         }
       })
     },
-
-    // $_disabled() {
-    //   this.isShowDisabled = true
-    //   let interval = setInterval(() => {
-    //     if (this.number === 0) {
-    //       this.number = 60
-    //       this.content = "获取验证码"
-    //       this.isShowDisabled = false
-    //       clearInterval(interval)
-    //     }else {
-    //       this.content = this.number-- + "秒"
-    //     }
-    //   }, 1000);
-    // },
   },
   mounted() {},
 }

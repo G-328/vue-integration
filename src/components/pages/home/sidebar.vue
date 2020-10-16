@@ -2,7 +2,8 @@
   <div>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        class="el-menu-demo"
+        router
+        mode="vertical"
         :default-active="activeMenu"
         background-color="rgba(48, 65, 86)"
         text-color="rgb(191, 203, 217)"
@@ -27,29 +28,64 @@ export default {
   },
   data() {
     return {
-      activeIndex: '1',
       urls: [
         {
-          path: "/home",
+          path: "/home/homePage",
           name: "主页",
           id: "path1",
           children: []
         },
         {
-          path: "22",
-          name: "娱乐相关",
+          path: "/home/statistical",
+          name: "统计",
           id: "path2",
+          children: []
+        },
+        {
+          path: "/home/editor",
+          name: "编辑器",
+          id: "path3",
+          children: []
+        },
+        {
+          path: "/home/date",
+          name: "时间",
+          id: "path4",
+          children: []
+        },
+        {
+          path: "/home/dataView",
+          name: "数据可视化",
+          id: "path5",
+          children: []
+        },
+        {
+          path: "/home/entertainment",
+          name: "娱乐天地",
+          id: "path6",
           children: [
             {
-              path: "33",
-              name: "影视",
-              id: "yingshi",
+              path: "/home/entertainment/game",
+              name: "游戏",
+              id: "youxi",
               children: []
             },
             {
-              path: "44",
+              path: "/home/entertainment/music",
               name: "音乐",
               id: "yinyue",
+              children: []
+            },
+            {
+              path: "/home/entertainment/movie",
+              name: "电影",
+              id: "dianying",
+              children: []
+            },
+            {
+              path: "/home/entertainment/TVseries",
+              name: "电视剧",
+              id: "dianshiju",
               children: []
             },
           ]

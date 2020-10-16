@@ -1,6 +1,5 @@
 <template>
   <div style="padding:30px;">
-    <!-- <router-view /> -->
-    entertainment
+    <router-view />
   </div>
 </template>
