@@ -1,6 +1,6 @@
 <template>
-  <div class="home-container">
-    <sidebar class="sidebar-container" />
+  <div class="home-container" :class="{'is-opened': !sidebar.opened}">
+    <sidebar class="sidebar-container"/>
     <div class="main-container">
       <div class="setting">
         <div>
@@ -14,7 +14,7 @@
           </el-switch>
         </div>
         <div>
-          <span class="qwer">是否启用导航条</span>
+          <span>是否启用导航条</span>
           <el-switch
             @change="navBarC"
             :value="navBar"
@@ -26,7 +26,6 @@
       </div>
       <top-nav
         class="main-top"
-        :class="{fixedHeader: fixedHeader}"
       />
       <div class="main-content">
         <router-view></router-view>
@@ -53,10 +52,10 @@ export default {
   computed: {
     ...mapState({
       fixedHeader: state => state.fixedHeader,
+      sidebar: state => state.sidebar,
       navBar: state => state.navBar,
-    })
+    }),
   },
-  watch: {},
   methods: {
     fixedHeaderC() {
       this.$store.commit("SET_FIXEDHEADER")
@@ -70,59 +69,54 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "@/assets/less/common.less";
+
   .home-container {
     width: 100%;
     height: 100%;
     display: flex;
 
     .sidebar-container {
-      width: 210px;
+      width: @sidebarWidth;
       height: 100%;
       background-color:rgb(48, 65, 86);
-
       position: fixed;
     }
 
     .main-container {
-      width: calc(100% - 210px);
+      width: calc(100% - @sidebarWidth);
       height: 100%;
+      margin-left: @sidebarWidth;
       position: relative;
-      display: flex;
-      flex-direction: column;
-
-      margin-left: 210px;
-
-
-      .setting {
-        width: 200px;
-        height: 200px;
-        position: absolute;
-        background: pink;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
 
       .main-top {
         width: 100%;
       }
 
-      .fixedHeader {
-        // width: calc(100% - 210px);
-        position: fixed;
-        margin-top: 0;
-        margin-right: 0;
-        // top: 0;
-        // left: 0;
-        // right: 0;
-      }
-
       .main-content {
         width: 100%;
-        height: calc(100% - 84px);
         background-color: #f0f2f5;
-        margin-top: 84px;
       }
     }
+  }
+
+  .is-opened {
+    .sidebar-container {
+      width: @shrinkSidebarWidth;
+    }
+
+    .main-container {
+      width: calc(100% - @shrinkSidebarWidth);
+    }
+  }
+
+  .setting {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background: pink;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 </style>

@@ -7,6 +7,7 @@
         :default-active="activeMenu"
         background-color="rgba(48, 65, 86)"
         text-color="rgb(191, 203, 217)"
+        :collapse="isCollapse"
         @select="handleSelect"
       >
         <sidebar-item
@@ -28,6 +29,7 @@ export default {
   },
   data() {
     return {
+      isCollapse: true,
       urls: [
         {
           path: "/home/homePage",

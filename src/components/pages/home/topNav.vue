@@ -28,8 +28,8 @@
         </el-dropdown>
       </div>
     </div>
-    <div class="nav-tags">
-
+    <div class="nav-tags" v-show="navBar">
+      diidid
     </div>
   </div>
 </template>
@@ -46,7 +46,9 @@ export default {
   },
   computed: {
     ...mapState({
-      sidebarStatus: state => state.sidebar
+      fixedHeader: state => state.fixedHeader,
+      sidebarStatus: state => state.sidebar,
+      navBar: state => state.navBar,
     }),
     pageName() {
       return this.$route.name
