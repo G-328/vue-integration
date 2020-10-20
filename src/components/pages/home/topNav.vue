@@ -1,7 +1,6 @@
 <template>
   <div class="">
     <div class="details">
-
       <div class="details-left">
         <div class="shrinkage" @click="shrinkage">
           <i class="iconfont" :class="sidebarStatus.opened ? 'icon-shouqi' : 'icon-zhankai3'"></i>
@@ -22,14 +21,29 @@
             <i class="el-icon-caret-bottom"></i>
           </div>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item >修改密码</el-dropdown-item>
+            <el-dropdown-item>修改密码</el-dropdown-item>
             <el-dropdown-item divided @click.native="outLogin">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
     </div>
     <div class="nav-tags" v-show="navBar">
-      diidid
+      <ul class="nav-wrap">
+        <template v-for="(item, index) in navList">
+          <li
+            :key="index"
+            class="nav-content"
+            @click="jumpNav(item.path)"
+            :class="{'nav-liBagd': item.path === $route.path}"
+          >
+            <p>{{item.name}}</p>
+            <div
+              class="el-icon-circle-close nav-chahao" @click="deleteNav(index, $event)"
+              :class="{'nav-chachaoXS': item.path === $route.path}"
+            ></div>
+          </li>
+        </template>
+      </ul>
     </div>
   </div>
 </template>
@@ -41,13 +55,14 @@ export default {
   name: 'TopNav',
   data() {
     return {
-      isFullScreen: true
+      isFullScreen: true,
     }
   },
   computed: {
     ...mapState({
       fixedHeader: state => state.fixedHeader,
       sidebarStatus: state => state.sidebar,
+      navList: state => state.navList,
       navBar: state => state.navBar,
     }),
     pageName() {
@@ -73,7 +88,18 @@ export default {
     outLogin() {
       this.$router.push('/login')
       sessionStorage.clear()
-    }
+      location.reload()
+    },
+    jumpNav(path) {
+      this.$router.push(path)
+    },
+    deleteNav(index, e) {
+      e.stopPropagation();
+      this.$store.commit("SET_NAVLIST", {
+        key: index,
+        status: "delete"
+      })
+    },
   },
 }
 </script>
@@ -123,6 +149,37 @@ export default {
   .nav-tags {
     width: 100%;
     height: 34px;
-    border-bottom: 1px solid rgba(110, 108, 108, 0.9);
+
+    .nav-wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .nav-content {
+        margin: 0 10px;
+        padding: 5px 18px 5px 3px;
+        border: 1px solid #d8dce5;
+        position: relative;
+        // background: pink;
+        cursor: pointer;
+
+        .nav-chahao {
+          font-size: 12px;
+          position: absolute;
+          top: 6px;
+          right: 4px;
+          display: none;
+        }
+
+        .nav-chachaoXS {
+          display: block !important;
+        }
+      }
+
+      .nav-liBagd {
+        background: #42b983;
+        color: #ffffff;
+      }
+    }
   }
 </style>

@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      isCollapse: true,
+      isCollapse: false,
       urls: [
         {
           path: "/home/homePage",
@@ -251,15 +251,17 @@ export default {
   mounted() {},
   computed: {
     activeMenu() {
-      console.log(this.$route.path)
+      // console.log(this.$route.path)
       return this.$route.path
     }
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log("object")
+      // this.$store.commit()
       console.log(key, keyPath);
     },
+    
   },
 }
 </script>

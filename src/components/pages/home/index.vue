@@ -1,33 +1,38 @@
 <template>
-  <div class="home-container" :class="{'is-opened': !sidebar.opened}">
+  <div
+    class="home-container"
+    :class="{'is-opened': !sidebar.opened}"
+  >
     <sidebar class="sidebar-container"/>
-    <div class="main-container">
+    <div
+      class="main-container"
+      :class="{'is-fixed': fixedHeader}"
+    >
       <div class="setting">
         <div>
-          <span>是否固定头部</span>
+          <span class="setting-title">固定头部</span>
           <el-switch
-            @change="fixedHeaderC"
-            :value="fixedHeader"
+            v-model="fixedHeader"
             :active-value="true"
             :inactive-value="false"
           >
           </el-switch>
         </div>
         <div>
-          <span>是否启用导航条</span>
+          <span class="setting-title">导航条</span>
           <el-switch
-            @change="navBarC"
-            :value="navBar"
+            v-model="navBar"
             :active-value="true"
             :inactive-value="false"
           >
           </el-switch>
         </div>
       </div>
-      <top-nav
-        class="main-top"
-      />
-      <div class="main-content">
+      <top-nav class="main-top"/>
+      <div
+        class="main-content"
+        :class="{'is-navbar': !navBar}"
+      >
         <router-view></router-view>
       </div>
     </div>
@@ -45,25 +50,30 @@ export default {
     TopNav
   },
   data() {
-    return {
-      arr: []
-    }
+    return {}
   },
   computed: {
     ...mapState({
-      fixedHeader: state => state.fixedHeader,
-      sidebar: state => state.sidebar,
-      navBar: state => state.navBar,
+      sidebar: state => state.sidebar
     }),
-  },
-  methods: {
-    fixedHeaderC() {
-      this.$store.commit("SET_FIXEDHEADER")
+    fixedHeader: {
+      get() {
+        return this.$store.state.fixedHeader
+      },
+      set(val) {
+        this.$store.commit("SET_FIXEDHEADER", val)
+      }
     },
-    navBarC() {
-      this.$store.commit("SET_NAVBAR")
+    navBar: {
+      get() {
+        return this.$store.state.navBar
+      },
+      set(val) {
+        this.$store.commit("SET_NAVBAR", val)
+      }
     },
   },
+  methods: {},
   mounted() {},
 }
 </script>
@@ -91,11 +101,32 @@ export default {
 
       .main-top {
         width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid gray
       }
 
       .main-content {
         width: 100%;
         background-color: #f0f2f5;
+      }
+    }
+
+    .is-fixed {
+      .main-top {
+        width: calc(100% - @sidebarWidth);
+        position: fixed;
+        top: 0;
+        right: 0;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+        border-bottom: none;
+      }
+
+      .main-content {
+        margin-top: 84px;
+      }
+      
+      .is-navbar {
+        margin-top: 50px;
       }
     }
   }
@@ -107,6 +138,13 @@ export default {
 
     .main-container {
       width: calc(100% - @shrinkSidebarWidth);
+      margin-left: @shrinkSidebarWidth;
+    }
+
+    .is-fixed {
+      .main-top {
+        width: calc(100% - @shrinkSidebarWidth);
+      }
     }
   }
 
@@ -118,5 +156,9 @@ export default {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    .setting-title {
+      width: 100px;
+      background: blue;
+    }
   }
 </style>
