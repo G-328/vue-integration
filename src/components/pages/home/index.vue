@@ -8,32 +8,36 @@
       class="main-container"
       :class="{'is-fixed': fixedHeader}"
     >
-      <div class="setting">
-        <div>
-          <span class="setting-title">固定头部</span>
-          <el-switch
-            v-model="fixedHeader"
-            :active-value="true"
-            :inactive-value="false"
-          >
-          </el-switch>
-        </div>
-        <div>
-          <span class="setting-title">导航条</span>
-          <el-switch
-            v-model="navBar"
-            :active-value="true"
-            :inactive-value="false"
-          >
-          </el-switch>
-        </div>
-      </div>
       <top-nav class="main-top"/>
       <div
         class="main-content"
         :class="{'is-navbar': !navBar}"
       >
         <router-view></router-view>
+      </div>
+    </div>
+
+    <div class="setting" :class="{'setting-show': !isShowSettingSwitch}">
+      <div>
+        <span class="setting-title">固定头部</span>
+        <el-switch
+          v-model="fixedHeader"
+          :active-value="true"
+          :inactive-value="false"
+        >
+        </el-switch>
+      </div>
+      <div>
+        <span class="setting-title">导航条</span>
+        <el-switch
+          v-model="navBar"
+          :active-value="true"
+          :inactive-value="false"
+        >
+        </el-switch>
+      </div>
+      <div class="setting-switch" @click="settingSwitch">
+        <i :class="isShowSettingSwitch ? 'el-icon-caret-right' : 'el-icon-caret-left'"></i>
       </div>
     </div>
   </div>
@@ -50,7 +54,9 @@ export default {
     TopNav
   },
   data() {
-    return {}
+    return {
+      isShowSettingSwitch: false
+    }
   },
   computed: {
     ...mapState({
@@ -73,8 +79,12 @@ export default {
       }
     },
   },
-  methods: {},
   mounted() {},
+  methods: {
+    settingSwitch() {
+      this.isShowSettingSwitch = !this.isShowSettingSwitch
+    }
+  },
 }
 </script>
 
@@ -97,7 +107,6 @@ export default {
       width: calc(100% - @sidebarWidth);
       height: 100%;
       margin-left: @sidebarWidth;
-      position: relative;
 
       .main-top {
         width: 100%;
@@ -107,6 +116,7 @@ export default {
 
       .main-content {
         width: 100%;
+        min-height: calc(100% - 84px);
         background-color: #f0f2f5;
       }
     }
@@ -127,6 +137,7 @@ export default {
       
       .is-navbar {
         margin-top: 50px;
+        min-height: calc(100% - 50px);
       }
     }
   }
@@ -149,16 +160,31 @@ export default {
   }
 
   .setting {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    background: pink;
+    width: 100px;
+    height: 80px;
+    position: fixed;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    background: rgb(26, 110, 110);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
     .setting-title {
-      width: 100px;
-      background: blue;
+      width: 50px;
     }
+    .setting-switch {
+      position: absolute;
+      width: 10px;
+      height: 30px;
+      line-height: 30px;
+      left: -10px;
+      background: rgba(31, 10, 10, 0.43);
+      cursor: pointer;
+    }
+  }
+  .setting-show {
+    right: -100px;
   }
 </style>
