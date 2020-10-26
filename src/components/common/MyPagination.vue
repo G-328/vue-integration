@@ -1,5 +1,5 @@
 <template>
-  <div class="my-pagination">
+  <div class="my-pagination" :class="{'is-opened': !sidebar.opened}">
     <el-pagination
       :current-page="currentPage"
       :page-sizes="pageSizes"
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'MyPagination',
   props: {
@@ -30,6 +31,11 @@ export default {
       pageSizes: [5, 10, 20, 50, 100],
     }
   },
+  computed: {
+    ...mapState({
+      sidebar: state => state.sidebar
+    })
+  },
   methods: {
     handleSizeChange(pageSize) {
       // 当前页面数据条数
@@ -44,5 +50,17 @@ export default {
 </script>
 
 <style lang='less' scoped>
+@import "@/assets/less/common.less";
 
+  .my-pagination {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background: pink;
+    .el-pagination {
+      padding: 0;
+    }
+  }
 </style>

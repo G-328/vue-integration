@@ -1,5 +1,5 @@
 <template>
-  <div class="homePage">
+  <div>
   homePage
   </div>
 </template>
@@ -12,9 +12,5 @@ export default {
 </script>
 
 <style lang='less' scoped>
-  .homePage {
-    height: 1200px;
-    background: pink;
-    // margin: 10px;
-  }
+
 </style>

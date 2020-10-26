@@ -13,7 +13,7 @@
         class="main-content"
         :class="{'is-navbar': !navBar}"
       >
-        <router-view></router-view>
+        <router-view class="main-route"></router-view>
       </div>
     </div>
 
@@ -111,13 +111,23 @@ export default {
       .main-top {
         width: 100%;
         background-color: #fff;
-        border-bottom: 1px solid gray
+        border-bottom: 1px solid gray;
+        z-index: 5;
       }
 
       .main-content {
         width: 100%;
-        min-height: calc(100% - 84px);
+        height: calc(100% - 84px);
+        padding: 10px;
         background-color: #f0f2f5;
+
+        .main-route {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+
+        }
       }
     }
 

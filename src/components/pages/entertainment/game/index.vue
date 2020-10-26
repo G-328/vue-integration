@@ -1,29 +1,35 @@
 <template>
   <div>
-  game
-  <MyTable
-    :titleData="titleData"
-    :tableData="tableData"
-    :operationData="operationData"
-    @handleButton="handleButton"
-    @selectionChange="selectionChange"
-    @selectAll="selectAll"
-  >
-  </MyTable>
-  <MyPagination
-    :total="total"
-    @handleSizeChange="handleSizeChange"
-    @handleCurrentChange="handleCurrentChange"
-  >
-  </MyPagination>
+    <div class="btn-up">
+      <el-button type="primary">新增</el-button>
+      <el-button type="primary">删除</el-button>
+    </div>
+    <div class="table-container">
+      <MyTable
+        :titleData="titleData"
+        :tableData="tableData"
+        :operationData="operationData"
+        @handleButton="handleButton"
+        @selectionChange="selectionChange"
+        @selectAll="selectAll"
+      >
+      </MyTable>
+      <MyPagination
+        :total="total"
+        @handleSizeChange="handleSizeChange"
+        @handleCurrentChange="handleCurrentChange"
+      >
+      </MyPagination>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import MyTable from '@/components/common/MyTable'
 import MyPagination from '@/components/common/MyPagination'
+import { gameData} from '@/utils/js/data'
 export default {
-  // name: 'Game',
   components: {
     MyTable,
     MyPagination
@@ -33,22 +39,24 @@ export default {
       total: 100,
       titleData: [
         {
-          prop: "sss",
-          label: "我的"
+          prop: "name",
+          label: "游戏名"
         },
         {
-          prop: "www",
-          label: "他的"
-        },
-      ],
-      tableData: [
-        {
-          sss: "嘿嘿",
-          www: "哈哈"
+          prop: "year",
+          label: "出产年份"
         },
         {
-          sss: "哈喽",
-          www: "hello"
+          prop: "pattern",
+          label: "销售模式"
+        },
+        {
+          prop: "type",
+          label: "游戏类型"
+        },
+        {
+          prop: "manufacturer",
+          label: "游戏厂商"
         },
       ],
       operationData: {
@@ -56,7 +64,7 @@ export default {
         width: "100",
         options: [
           {
-            label: "新增",
+            label: "编辑",
             type: "add"
           },
           {
@@ -65,6 +73,11 @@ export default {
           },
         ]
       }
+    }
+  },
+  computed: {
+    tableData() {
+      return gameData
     }
   },
   methods: {
