@@ -1,5 +1,7 @@
 # replace default config
 
+#当前配置不适用于最新版本
+
 # multipass: true
 # full: true
 

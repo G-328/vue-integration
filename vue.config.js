@@ -1,5 +1,5 @@
 const path = require('path')  //引入path模块
-const UglifyJsPlugin = require('uglifujs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifujs-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)  //path.join(__dirname)设置绝对路径
@@ -7,7 +7,7 @@ function resolve(dir) {
 
 module.exports = {
   publicPath: "/", //部署应用包时的基本URL
-  opputDir: "dist", //生产环境构建文件的目录
+  outputDir: "dist", //生产环境构建文件的目录
   assetsDir: "static", //放置生成的静态资源的目录
   indexPath: "index.html", //生成的index.html的输出路径。也可以是个绝对路径
   filenameHashing: true, //文件名的哈希值，以便更好地控制缓存
@@ -52,18 +52,18 @@ module.exports = {
         '@assets': resolve('src/assets'),  //图片
       // }
     }
-    config.optimization.minimizer = [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            warning: false,
-            drop_console: true,
-            drop_debugger: true,
-            pure_funcs: ["console.log"]
-          }
-        }
-      })
-    ]
+    // config.optimization.minimizer = [
+    //   new UglifyJsPlugin({
+    //     uglifyOptions: {
+    //       compress: {
+    //         warning: false,
+    //         drop_console: true,
+    //         drop_debugger: true,
+    //         pure_funcs: ["console.log"]
+    //       }
+    //     }
+    //   })
+    // ]
   },
   /* 
     configureWebpack: {
@@ -81,21 +81,21 @@ module.exports = {
     config.resolve.symlinks(true) //修复HRM
 
     // 设置 svg-sprite-loader
-    config.module
-      .rule("svg")
-      .exclude.add(resolve("src/icons"))
-      .end()
-    config.module
-      .rule("icons")
-      .test(/\.svg$/)
-      .include.add(resolve("src/icons"))
-      .end()
-      .use("svg-sprite-loader")
-      .loader("svg-sprite-loder")
-      .option({
-        symbolId: "icon-[name]"
-      })
-      .end()
+    // config.module
+    //   .rule("svg")
+    //   .exclude.add(resolve("src/icons"))
+    //   .end()
+    // config.module
+    //   .rule("icons")
+    //   .test(/\.svg$/)
+    //   .include.add(resolve("src/icons"))
+    //   .end()
+    //   .use("svg-sprite-loader")
+    //   .loader("svg-sprite-loder")
+    //   .option({
+    //     symbolId: "icon-[name]"
+    //   })
+    //   .end()
   },
   css: {
     // true时*.module.[ext]结尾的文件才会被视为CSS Modules模块,设置为false后就不需要加.module了 
@@ -108,16 +108,16 @@ module.exports = {
     // extract: "",
     sourceMap: false, //是否为 CSS 开启 source map。设置为 true 之后可能会影响构建的性能,查看css源代码位置
     // 向css相关的loader传递选项
-    loaderOptions: {
-      // 这里的会传递给css-loader
-      css: {
+    // loaderOptions: {
+    //   // 这里的会传递给css-loader
+    //   css: {
 
-      },  
-      // 这里的会传递给postcss-loader
-      postcss: {
+    //   },  
+    //   // 这里的会传递给postcss-loader
+    //   postcss: {
 
-      }
-    }
+    //   }
+    // }
   },
   /* 
     所有webpack-dev-server的选项都支持,详情看文档
