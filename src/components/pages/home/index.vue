@@ -79,7 +79,9 @@ export default {
       }
     },
   },
-  mounted() {},
+  mounted() {
+    console.log("home", window.performance, performance.timing, performance.navigation)
+  },
   methods: {
     settingSwitch() {
       this.isShowSettingSwitch = !this.isShowSettingSwitch

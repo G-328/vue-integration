@@ -18,7 +18,7 @@ Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios
 
 Vue.use(Vuex)
-Vue.use(ElementUI,{ size: 'small'})
+Vue.use(ElementUI, { size: 'small'})
 
 new Vue({
   store,
