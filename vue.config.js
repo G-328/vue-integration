@@ -1,12 +1,12 @@
 const path = require('path')  //引入path模块
-// const UglifyJsPlugin = require('uglifujs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)  //path.join(__dirname)设置绝对路径
 }
 
 module.exports = {
-  publicPath: "/", //部署应用包时的基本URL
+  publicPath: process.env.NODE_ENV === "development" ?  "/" : "./", //部署应用包时的基本URL
   outputDir: "dist", //生产环境构建文件的目录
   assetsDir: "static", //放置生成的静态资源的目录
   indexPath: "index.html", //生成的index.html的输出路径。也可以是个绝对路径
@@ -31,7 +31,7 @@ module.exports = {
   lintOnSave: false,
   runtimeCompiler: false, //是否使用包含运行时编译器的 Vue 构建版本
   //默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来
-  transpileDependencies: [],
+  // transpileDependencies: [],
   /* 
     1.如果不需要生产环境source map(源程序映射)，可以将其设置为false,加速生成环境构建
     2.查看压缩后代码对应源码的位置,控制台显示错误位置
@@ -52,18 +52,18 @@ module.exports = {
         '@assets': resolve('src/assets'),  //图片
       // }
     }
-    // config.optimization.minimizer = [
-    //   new UglifyJsPlugin({
-    //     uglifyOptions: {
-    //       compress: {
-    //         warning: false,
-    //         drop_console: true,
-    //         drop_debugger: true,
-    //         pure_funcs: ["console.log"]
-    //       }
-    //     }
-    //   })
-    // ]
+    config.optimization.minimizer = [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          warnings: false,
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log"]
+          }
+        }
+      })
+    ]
   },
   /* 
     configureWebpack: {
@@ -81,25 +81,25 @@ module.exports = {
     config.resolve.symlinks(true) //修复HRM
 
     // 设置 svg-sprite-loader
-    // config.module
-    //   .rule("svg")
-    //   .exclude.add(resolve("src/icons"))
-    //   .end()
-    // config.module
-    //   .rule("icons")
-    //   .test(/\.svg$/)
-    //   .include.add(resolve("src/icons"))
-    //   .end()
-    //   .use("svg-sprite-loader")
-    //   .loader("svg-sprite-loder")
-    //   .option({
-    //     symbolId: "icon-[name]"
-    //   })
-    //   .end()
+    config.module
+      .rule("svg")
+      .exclude.add(resolve("src/icons"))
+      .end()
+    config.module
+      .rule("icons")
+      .test(/\.svg$/)
+      .include.add(resolve("src/icons"))
+      .end()
+      .use("svg-sprite-loader")
+      .loader("svg-sprite-loader")
+      .options({
+        symbolId: "icon-[name]"
+      })
+      .end()
   },
   css: {
-    // true时*.module.[ext]结尾的文件才会被视为CSS Modules模块,设置为false后就不需要加.module了 
-    requireModuleExtension: false,
+    // true时*.module.[ext]结尾的文件才会被视为CSS Modules模块,设置为false后就不需要加.module了,设置false会使第三方库样式失效
+    requireModuleExtension: true,
     /* 
       默认：生产环境是true，开发环境下是false
       提取 CSS 在开发环境模式下是默认不开启的，因为它和 CSS 热重载不兼容。然而，你仍然可以将这个值显性地设置为 true 在所有情况下都强制提取

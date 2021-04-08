@@ -108,7 +108,9 @@ export default {
       })
     },
   },
-  mounted() {},
+  mounted() {
+    console.log("login")
+  },
 }
 </script>
 
