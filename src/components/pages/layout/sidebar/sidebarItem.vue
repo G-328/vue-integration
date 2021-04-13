@@ -2,13 +2,19 @@
   <div class="sidebar-container">
     <!-- 没有子菜单 -->
     <template v-if="item.children.length === 0">
-      <el-menu-item  @click="addNavList(item)" :index="item.path">{{item.name}}</el-menu-item>
+      <!-- <el-menu-item  @click="addNavList(item)" :index="item.path">{{item.name}}</el-menu-item> -->
+      <el-menu-item  @click="addNavList(item)" :index="item.path">
+        <Item icon="dengPao"></Item>
+      </el-menu-item>
     </template>
 
     <!-- 有子菜单 -->
     <template v-else>
       <el-submenu :index="item.path">
-        <template slot="title">{{item.name}}</template>
+        <!-- <template slot="title">{{item.name}}</template> -->
+        <template slot="title">
+          <Item icon="dengPao" title="哈哈哈"></Item>
+        </template>
         <sidebar-item
           v-for="item in item.children"
           :key="item.path"
@@ -20,8 +26,12 @@
 </template>
 
 <script>
+import Item from './item'
 export default {
   name: 'SidebarItem',
+  components: {
+    Item
+  },
   props: {
     item: {
       type: Object,

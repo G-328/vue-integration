@@ -7,7 +7,7 @@
         :default-active="activeMenu"
         background-color="rgba(48, 65, 86)"
         text-color="rgb(191, 203, 217)"
-        :collapse="isCollapse"
+        :collapse="!isCollapse"
         @select="handleSelect"
       >
         <sidebar-item
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      isCollapse: false,
       urls: [
         {
           path: "/home/homePage",
@@ -249,12 +248,6 @@ export default {
     }
   },
   mounted() {},
-  computed: {
-    activeMenu() {
-      // console.log(this.$route.path)
-      return this.$route.path
-    }
-  },
   methods: {
     handleSelect(key, keyPath) {
       console.log("object")
@@ -262,6 +255,15 @@ export default {
       console.log(key, keyPath);
     },
     
+  },
+  computed: {
+    activeMenu() {
+      // console.log(this.$route.path)
+      return this.$route.path
+    },
+    isCollapse() {
+      return this.$store.state.sidebar.opened
+    }
   },
 }
 </script>

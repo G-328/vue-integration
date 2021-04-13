@@ -3,12 +3,13 @@
     class="home-container"
     :class="{'is-opened': !sidebar.opened}"
   >
-    <sidebar class="sidebar-container"/>
+    <!-- 侧边菜单 -->
+    <side-bar class="sidebar-container"/>
     <div
       class="main-container"
       :class="{'is-fixed': fixedHeader}"
     >
-      <top-nav class="main-top"/>
+      <topn-av class="main-top"/>
       <div
         class="main-content"
         :class="{'is-navbar': !navBar}"
@@ -45,13 +46,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import Sidebar from './sidebar'
-import TopNav from './topNav'
+import sidebar from './sidebar/index'
+import topNav from './topNav/index'
 export default {
   name: 'Home',
   components: {
-    Sidebar,
-    TopNav
+    "side-bar": sidebar,
+    "topn-av": topNav
   },
   data() {
     return {

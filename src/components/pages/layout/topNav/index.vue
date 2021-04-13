@@ -58,17 +58,6 @@ export default {
       isFullScreen: true,
     }
   },
-  computed: {
-    ...mapState({
-      fixedHeader: state => state.fixedHeader,
-      sidebarStatus: state => state.sidebar,
-      navList: state => state.navList,
-      navBar: state => state.navBar,
-    }),
-    pageName() {
-      return this.$route.name
-    }
-  },
   mounted() {},
   methods: {
     shrinkage() {
@@ -100,6 +89,17 @@ export default {
         status: "delete"
       })
     },
+  },
+  computed: {
+    ...mapState({
+      fixedHeader: state => state.fixedHeader,
+      sidebarStatus: state => state.sidebar,
+      navList: state => state.navList,
+      navBar: state => state.navBar,
+    }),
+    pageName() {
+      return this.$route.name
+    }
   },
 }
 </script>
