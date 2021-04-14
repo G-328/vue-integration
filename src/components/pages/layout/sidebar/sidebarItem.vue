@@ -1,10 +1,11 @@
 <template>
   <div class="sidebar-container">
     <!-- 没有子菜单 -->
-    <template v-if="item.children.length === 0">
+    <!-- <template v-if="item.children && item.children.length === 0"> -->
+    <template v-if="hasOneShowingChild(item)">
       <!-- <el-menu-item  @click="addNavList(item)" :index="item.path">{{item.name}}</el-menu-item> -->
       <el-menu-item  @click="addNavList(item)" :index="item.path">
-        <Item icon="dengPao"></Item>
+        <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
       </el-menu-item>
     </template>
 
@@ -13,7 +14,8 @@
       <el-submenu :index="item.path">
         <!-- <template slot="title">{{item.name}}</template> -->
         <template slot="title">
-          <Item icon="dengPao" title="哈哈哈"></Item>
+          <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
+          <!-- <Item icon="dengPao" title="哈哈哈"></Item> -->
         </template>
         <sidebar-item
           v-for="item in item.children"
@@ -49,6 +51,9 @@ export default {
         key: item,
         status: "add"
       })
+    },
+    hasOneShowingChild(item) {
+
     }
   },
 }

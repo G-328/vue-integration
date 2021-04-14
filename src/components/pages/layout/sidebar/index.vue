@@ -1,5 +1,6 @@
 <template>
   <div>
+    <lo-go v-if="true" :collapse="!isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         router
@@ -7,7 +8,7 @@
         :default-active="activeMenu"
         background-color="rgba(48, 65, 86)"
         text-color="rgb(191, 203, 217)"
-        :collapse="!isCollapse"
+        :collapse="isCollapse"
         @select="handleSelect"
       >
         <sidebar-item
@@ -22,229 +23,104 @@
 
 <script>
 import SidebarItem from './sidebarItem'
+import logo from './logo'
 export default {
   name: 'Sidebar',
   components: {
+    "lo-go": logo,
     SidebarItem
   },
   data() {
     return {
       urls: [
         {
-          path: "/home/homePage",
-          name: "主页",
-          id: "path1",
-          children: []
+          path: "/login",
+          name: "登录",
+          component: () => import('@/components/pages/login'),
+          hidden: true,
+          meta: { title: '登录', icon: 'dengPao' }
         },
         {
-          path: "/home/statistical",
-          name: "统计",
-          id: "path2",
-          children: []
-        },
-        {
-          path: "/home/editor",
-          name: "编辑器",
-          id: "path3",
-          children: []
-        },
-        {
-          path: "/home/date",
-          name: "时间",
-          id: "path4",
-          children: []
-        },
-        {
-          path: "/home/dataView",
-          name: "数据可视化",
-          id: "path5",
-          children: []
-        },
-        {
-          path: "/home/entertainment",
-          name: "娱乐天地",
-          id: "path6",
+          path: "/home",
+          component: () => import('@/components/pages/layout'),
+          redirect: '/home/homePage',
+          meta: { title: 'home', icon: 'dengPao' },
           children: [
             {
-              path: "/home/entertainment/game",
-              name: "游戏",
-              id: "youxi",
-              children: []
+              path: "homePage",
+              name: "主页",
+              component: () => import('@/components/pages/personalCenter/homePage'),
+              meta: { title: '主页', icon: 'dengPao' }
             },
             {
-              path: "/home/entertainment/music",
-              name: "音乐",
-              id: "yinyue",
-              children: []
+              path: "statistical",
+              name: "统计",
+              component: () => import('@/components/pages/personalCenter/statistical'),
+              meta: { title: '统计', icon: 'dengPao' }
             },
             {
-              path: "/home/entertainment/movie",
-              name: "电影",
-              id: "dianying",
-              children: []
+              path: "editor",
+              name: "编辑器",
+              component: () => import('@/components/pages/editor/RichTextEditor'),
+              meta: { title: '编辑器', icon: 'dengPao', }
             },
             {
-              path: "/home/entertainment/TVseries",
-              name: "电视剧",
-              id: "dianshiju",
-              children: []
-            },
-          ]
-        },
-        {
-          path: "55",
-          name: "随意了",
-          id: "path3",
-          children: []
-        },
-        {
-          path: "q",
-          name: "相关",
-          id: "path2",
-          children: [
-            {
-              path: "w",
-              name: "影视",
-              id: "yingshi",
-              children: []
+              path: "date",
+              name: "时间",
+              component: () => import('@/components/pages/date/DayJs'),
+              meta: { title: '时间', icon: 'dengPao', }
             },
             {
-              path: "e",
-              name: "音乐",
-              id: "yinyue",
-              children: []
-            },
-          ]
-        },
-        {
-          path: "r",
-          name: "娱乐",
-          id: "path2",
-          children: [
-            {
-              path: "t",
-              name: "影视",
-              id: "yingshi",
-              children: []
+              path: "dataView",
+              name: "数据可视化",
+              component: () => import('@/components/pages/dataView/index'),
+              meta: { title: '数据可视化', icon: 'dengPao', }
             },
             {
-              path: "y",
-              name: "音乐",
-              id: "yinyue",
+              path: "entertainment",
+              name: "娱乐",
+              component: () => import('@/components/pages/entertainment'),
               children: [
                 {
-                  path: "u",
-                  name: "影视",
-                  id: "yingshi",
-                  children: []
+                  path: "game",
+                  name: "游戏",
+                  component: () => import('@/components/pages/entertainment/game'),
+                  meta: { title: 'Dashboard', }
                 },
                 {
-                  path: "i",
+                  path: "music",
                   name: "音乐",
-                  id: "yinyue",
-                  children: []
+                  component: () => import('@/components/pages/entertainment/music'),
+                  meta: { title: 'Dashboard', }
+                },
+                {
+                  path: "movie",
+                  name: "电影",
+                  component: () => import('@/components/pages/entertainment/movie'),
+                  meta: { title: 'Dashboard', }
+                },
+                {
+                  path: "TVseries",
+                  name: "TVseries",
+                  component: () => import('@/components/pages/entertainment/TVseries'),
+                  meta: { title: 'Dashboard', }
                 },
               ]
             },
           ]
         },
         {
-          path: "r",
-          name: "娱乐",
-          id: "path2",
-          children: [
-            {
-              path: "t",
-              name: "影视",
-              id: "yingshi",
-              children: []
-            },
-            {
-              path: "y",
-              name: "音乐",
-              id: "yinyue",
-              children: [
-                {
-                  path: "u",
-                  name: "影视",
-                  id: "yingshi",
-                  children: []
-                },
-                {
-                  path: "i",
-                  name: "音乐",
-                  id: "yinyue",
-                  children: []
-                },
-              ]
-            },
-          ]
+          path: "/404",
+          name: "404",
+          component: () => import('@/components/common/404'),
+          hidden: true
         },
-        {
-          path: "r",
-          name: "娱乐",
-          id: "path2",
-          children: [
-            {
-              path: "t",
-              name: "影视",
-              id: "yingshi",
-              children: []
-            },
-            {
-              path: "y",
-              name: "音乐",
-              id: "yinyue",
-              children: [
-                {
-                  path: "u",
-                  name: "影视",
-                  id: "yingshi",
-                  children: []
-                },
-                {
-                  path: "i",
-                  name: "音乐",
-                  id: "yinyue",
-                  children: []
-                },
-              ]
-            },
-          ]
-        },
-        {
-          path: "r",
-          name: "娱乐",
-          id: "path2",
-          children: [
-            {
-              path: "t",
-              name: "影视",
-              id: "yingshi",
-              children: []
-            },
-            {
-              path: "y",
-              name: "音乐",
-              id: "yinyue",
-              children: [
-                {
-                  path: "u",
-                  name: "影视",
-                  id: "yingshi",
-                  children: []
-                },
-                {
-                  path: "i",
-                  name: "音乐",
-                  id: "yinyue",
-                  children: []
-                },
-              ]
-            },
-          ]
-        },
-      ],
+        { 
+          path: '*',
+          redirect: '/404',
+          hidden: true
+        }
+      ]
     }
   },
   mounted() {},
@@ -258,16 +134,15 @@ export default {
   },
   computed: {
     activeMenu() {
-      // console.log(this.$route.path)
       return this.$route.path
     },
     isCollapse() {
-      return this.$store.state.sidebar.opened
+      return !this.$store.state.sidebar.opened
     }
   },
 }
 </script>
 
 <style lang="less" scoped>
-  
+
 </style>

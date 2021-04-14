@@ -1,4 +1,5 @@
 @import "@assets/less/common.less";
+@import "@assets/less/element-ui.less";
 
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { 
   margin: 0;
@@ -6,17 +7,15 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
 }
 
 html{
-  font-size: 12px;
-  color: black;
   width: 100%;
   height: 100%;
+  font-size: 12px;
 }
 
 body {
   width: 100%;
   height: 100%;
   font-family: "楷体";
-  color: black;
 }
 
 div, span, a, p, li {
@@ -31,8 +30,8 @@ a {
   text-decoration: none;
 }
 
-ul,ol{
-  list-style-type:none;
+ul, ol{
+  list-style-type: none;
 }
 
 span {
@@ -43,51 +42,8 @@ button {
   font-family: "楷体";
 }
 
-// 自定义按钮
-.btn-up {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-}
-
-// 自定义表格
-.table-container {
-  width: 100%;
-  height: calc(100% - 45px);
-  display: flex;
-  flex-direction: column;
-  .my-table {
-    flex: 1 1;
-  }
-  .my-pagination {
-    flex: 0 0 40px;
-  }
-}
-
-// 表格
-.el-table {
-  width: 100%;
-  height: 100%;
-}
-// 输入框
-
-// 按钮
-
-// topBtn
-
-// 滚动条
-.el-scrollbar {
-  height: 100%;
-}
-.scrollbar-wrapper {
-  overflow-x: hidden !important;
-}
-
-// 头部图标
-.main-top {
-  .iconfont {
-    font-size: 20px;
+.sidebar-container .el-menu .sidebar-container .el-menu-item, .el-submenu__title {
+  .svg-icon {
+    margin-right: 12px;
   }
 }

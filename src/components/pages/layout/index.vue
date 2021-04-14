@@ -5,6 +5,7 @@
   >
     <!-- 侧边菜单 -->
     <side-bar class="sidebar-container"/>
+    <!-- 右侧 -->
     <div
       class="main-container"
       :class="{'is-fixed': fixedHeader}"
@@ -18,6 +19,7 @@
       </div>
     </div>
 
+    <!-- 设置面板 -->
     <div class="setting" :class="{'setting-show': !isShowSettingSwitch}">
       <div>
         <span class="setting-title">固定头部</span>
@@ -81,7 +83,7 @@ export default {
     },
   },
   mounted() {
-    console.log("home", window.performance, performance.timing, performance.navigation)
+    // console.log("home", window.performance, performance.timing, performance.navigation)
   },
   methods: {
     settingSwitch() {

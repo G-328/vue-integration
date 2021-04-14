@@ -13,7 +13,6 @@ export default {
     }
   },
   render(h, context) {
-    console.log("render", /* h, */ context)
     let { icon, title } = context.props
     let vNodes = []
     if (icon) {
@@ -22,7 +21,7 @@ export default {
     if (title) {
       vNodes.push(<span slot="title">{title}</span>)
     }
-    console.log("render", /* h, */ /* context, */ vNodes)
+    // console.log("render", /* h, */ /* context, */ vNodes)
     return vNodes
   },
 }
