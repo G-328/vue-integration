@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DeployIp } from "./ip"
+// import { DeployIp } from "./ip"
 import { Loading, Message, MessageBox } from 'element-ui'
 /**
  * @desc 请求环境地址配置

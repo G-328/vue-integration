@@ -7,7 +7,7 @@ function resolve(dir) {
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "development" ?  "/" : "./", //部署应用包时的基本URL
-  outputDir: "dist", //生产环境构建文件的目录
+  outputDir: "dist2", //生产环境构建文件的目录
   assetsDir: "static", //放置生成的静态资源的目录
   indexPath: "index.html", //生成的index.html的输出路径。也可以是个绝对路径
   filenameHashing: true, //文件名的哈希值，以便更好地控制缓存
@@ -132,8 +132,9 @@ module.exports = {
     // disableHostCheck: true,
     proxy: {
       "/dev": {
-        target: "http://127.0.0.1:8080",
+        target: 'http://172.15.25.136:8089/dams', //温栋
         changeOrigin: true, //改变源
+        xfwd:true,
         ws: true, //是否代理websockets
         pathRewrite: {
           "^/dev": ""

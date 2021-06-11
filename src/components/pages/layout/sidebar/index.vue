@@ -34,6 +34,24 @@ export default {
     return {
       urls: [
         {
+              path: "homePage",
+              name: "主页",
+              component: () => import('@/components/pages/personalCenter/homePage'),
+              meta: { title: '主页', icon: 'dengPao' }
+            },
+            {
+              path: "statistical",
+              name: "统计",
+              component: () => import('@/components/pages/personalCenter/statistical'),
+              meta: { title: '统计', icon: 'dengPao' }
+            },
+            {
+              path: "editor",
+              name: "编辑器",
+              component: () => import('@/components/pages/editor/RichTextEditor'),
+              meta: { title: '编辑器', icon: 'dengPao', }
+            },
+        {
           path: "/login",
           name: "登录",
           component: () => import('@/components/pages/login'),
@@ -113,12 +131,16 @@ export default {
           path: "/404",
           name: "404",
           component: () => import('@/components/common/404'),
-          hidden: true
+          hidden: true,
+                  meta: { title: 'Dashboard', }
+
         },
         { 
           path: '*',
           redirect: '/404',
-          hidden: true
+          hidden: true,
+                  meta: { title: 'Dashboard', }
+
         }
       ]
     }
@@ -130,7 +152,6 @@ export default {
       // this.$store.commit()
       console.log(key, keyPath);
     },
-    
   },
   computed: {
     activeMenu() {

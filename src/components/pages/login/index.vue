@@ -55,13 +55,16 @@
 </template>
 
 <script type="text/ecmascript-6">
+import APIcollection from "@/api/login";
+
 export default {
   name: 'Login',
   components: {},
   data() {
     const validateUsername = (rule, value, callback) => {
-      const userName = ["admin", "gjy"]
-      if (userName.indexOf(value.trim()) === -1) {
+      // const userName = ["admin", "gjy"]
+      // if (userName.indexOf(value.trim()) === -1) {
+      if (false) {
         callback(new Error('Please enter the correct user name'))
       } else {
         callback()
@@ -86,6 +89,7 @@ export default {
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: "password",
+      onpresscTime: 0,
     }
   },
   methods: {
@@ -106,6 +110,68 @@ export default {
           return false
         }
       })
+    },
+    handleLogin1() {
+      this.$router.push("/Home")
+      return
+      var self = this;
+      if (Date.now() - this.onpresscTime > 2000) {
+        console.log("-=-==")
+        this.onpresscTime = Date.now();
+        this.num += 1;
+        // this.$axios.post('/admin/check', {
+          // USERNAME: this.userName,
+          // PASSWORD: this.password,
+        // })
+        APIcollection.login({
+          USERNAME: this.loginForm.userName,
+          PASSWORD: this.loginForm.password,
+        }).then((res) => {
+          if (res.code) {
+            sessionStorage.setItem("user", this.userName);
+            sessionStorage.setItem("JSBS", res.data.JSBS);
+            sessionStorage.setItem("xx", res.data.MyMessage);
+            sessionStorage.setItem("userName", JSON.stringify(res.data.User));
+            sessionStorage.setItem("token", res.data.token)
+            this.$router.push("/Home")
+            // if (res.data.User.archivesCadre == "PT") {
+            // if (res.data.JSBS == "PT" || res.data.JSBS == "1") {
+            //   console.log("archivesCadre")
+            //   this.$router.push({ path: "/archivesUtilize/fileRetrieval" });
+            // } else {
+            //   this.$router.push({ path: "/personalCenter/UserCenter" });
+            // }
+          } else {
+            if (res.data == 1) {
+              this.$message({
+                title: "消息",
+                message: res.msg,
+                type: "warning",
+              });
+              this.$store.commit("SET_USERNAME", this.userName);
+              setTimeout(() => {
+                var a = true;
+                self.$store.commit("CHANGE_PASSWORD", a);
+                sessionStorage.setItem("user", this.userName);
+              }, 500);
+              return;
+            }
+            if (res.msg == "computererror") {
+              this.$message({
+                title: "消息",
+                message: "您的计算机没有访问权限",
+                type: "error",
+              });
+            } else {
+              this.$message({
+                title: "消息",
+                message: res.msg,
+                type: "error",
+              });
+            }
+          }
+        });
+      }
     },
   },
   mounted() {

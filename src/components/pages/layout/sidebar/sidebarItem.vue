@@ -2,7 +2,8 @@
   <div class="sidebar-container">
     <!-- 没有子菜单 -->
     <!-- <template v-if="item.children && item.children.length === 0"> -->
-    <template v-if="hasOneShowingChild(item)">
+    <!-- <template v-if="hasOneShowingChild(item)"> -->
+    <template v-if="false">
       <!-- <el-menu-item  @click="addNavList(item)" :index="item.path">{{item.name}}</el-menu-item> -->
       <el-menu-item  @click="addNavList(item)" :index="item.path">
         <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
