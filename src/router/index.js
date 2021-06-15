@@ -22,6 +22,7 @@ export default new Router({
       path: "/home",
       component: () => import('@/components/pages/layout'),
       redirect: '/home/homePage',
+      meta: {title: "home", icon: "dengPao"},
       children: [
         {
           path: "homePage",
@@ -57,6 +58,7 @@ export default new Router({
           path: "entertainment",
           name: "娱乐",
           component: () => import('@/components/pages/entertainment'),
+          meta: {title: "娱乐", icon: "dengPao"},
           children: [
             {
               path: "game",

@@ -1,11 +1,9 @@
 <template>
-  <div class="sidebar-container">
+  <div class="sidebar-container" v-if="!item.hidden">
     <!-- 没有子菜单 -->
-    <!-- <template v-if="item.children && item.children.length === 0"> -->
-    <!-- <template v-if="hasOneShowingChild(item)"> -->
-    <template v-if="false">
-      <!-- <el-menu-item  @click="addNavList(item)" :index="item.path">{{item.name}}</el-menu-item> -->
-      <el-menu-item  @click="addNavList(item)" :index="item.path">
+    <template v-if="hasOneShowingChild(item)">
+    <!-- <template v-if="false"> -->
+      <el-menu-item :index="item.path">
         <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
       </el-menu-item>
     </template>
@@ -13,10 +11,8 @@
     <!-- 有子菜单 -->
     <template v-else>
       <el-submenu :index="item.path">
-        <!-- <template slot="title">{{item.name}}</template> -->
         <template slot="title">
           <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
-          <!-- <Item icon="dengPao" title="哈哈哈"></Item> -->
         </template>
         <sidebar-item
           v-for="item in item.children"
@@ -46,15 +42,11 @@ export default {
   },
   mounted() {},
   methods: {
-    addNavList(item) {
-      console.log(item, "--=======---")
-      this.$store.commit("SET_NAVLIST", {
-        key: item,
-        status: "add"
-      })
-    },
     hasOneShowingChild(item) {
-
+      if (item.children === undefined || item.children.length === 0) {
+        return true
+      }
+      return false
     }
   },
 }
