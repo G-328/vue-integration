@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div class="details">
       <div class="details-left">
         <div class="shrinkage" @click="shrinkage">
@@ -38,7 +38,8 @@
           >
             <p>{{item.name}}</p>
             <div
-              class="el-icon-circle-close nav-chahao" @click="deleteNav(index, $event)"
+              @click="deleteNav(index, $event)"
+              class="el-icon-circle-close nav-chahao"
               :class="{'nav-chachaoXS': item.path === $route.path}"
             ></div>
           </li>

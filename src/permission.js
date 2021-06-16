@@ -1,7 +1,7 @@
 import router from './router'
 
 router.beforeEach((to, from, next) => {
-  const user = sessionStorage.getItem('user');
+  const user = JSON.parse(sessionStorage.getItem('vuex')).user;
 
   if (!user && to.path !== '/login') {
     next({path: '/login'})

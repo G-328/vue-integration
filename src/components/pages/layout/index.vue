@@ -61,6 +61,14 @@ export default {
       isShowSettingSwitch: false
     }
   },
+  mounted() {
+    // console.log("home", window.performance, performance.timing, performance.navigation)
+  },
+  methods: {
+    settingSwitch() {
+      this.isShowSettingSwitch = !this.isShowSettingSwitch
+    }
+  },
   computed: {
     ...mapState({
       sidebar: state => state.sidebar
@@ -81,14 +89,6 @@ export default {
         this.$store.commit("SET_NAVBAR", val)
       }
     },
-  },
-  mounted() {
-    // console.log("home", window.performance, performance.timing, performance.navigation)
-  },
-  methods: {
-    settingSwitch() {
-      this.isShowSettingSwitch = !this.isShowSettingSwitch
-    }
   },
 }
 </script>
