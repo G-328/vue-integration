@@ -46,7 +46,8 @@ export default {
   },
   computed: {
     urls() {
-      return this.$router.options.routes
+      // console.log("object",this.$router.options.routes.filter(item => !item.hidden))
+      return this.$router.options.routes.filter(item => !item.hidden)[0].children
     },
     activeMenu() {
       return this.$route.path

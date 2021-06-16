@@ -4,7 +4,7 @@ import state from './state'
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
-import persistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -14,14 +14,17 @@ const store = new Vuex.Store({
   getters,
   actions,
   mutations,
+  // 具体看配置
   plugins: [
-    persistedState({
+    createPersistedState({
+      // key: "vuex-测试", // 更改储存名
       storage: window.sessionStorage,
+      paths: ["user", "navBar"], // 设置需要持久化的数据和reducer差不多
       // reducer(val) {
       //   return {
-      //     // 只储存state的two
+      //     // 只储存state的user
       //     // qwer: val.one,
-      //     qwer: val.one,
+      //     user: val.user,
       //   }
       // }
     })

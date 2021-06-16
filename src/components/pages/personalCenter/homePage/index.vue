@@ -4,7 +4,7 @@
   <!-- <p click="one">qweq</p> -->
   <el-button @click="one">qwew</el-button>
   <el-button @click="two">two</el-button>
-  <p>{{$store.state.one}}</p>
+  <p>{{userName}}</p>
   <!-- <word v-if="two === 2"></word>
   <excel v-if="three === 2"></excel> -->
     <!-- <iframe width="1500px" height="600px" src="http://www.xdocin.com/xdoc?_func=to&amp;_format=html&amp;_cache=1&amp;_xdoc=http://47.92.6.236:9102/dcs.web/yozodoc.docx" frameborder="0"></iframe> -->
@@ -19,6 +19,7 @@
 <script>
 import word from './word.vue';
 import excel from './excel.vue';
+import { mapState } from 'vuex'
 export default {
   name: 'HomePage',
   components: {
@@ -29,16 +30,6 @@ export default {
     return {
       // two: 1,
       three: 1,
-    }
-  },
-  computed: {
-    src () {
-      // this.$store
-      // return "file:///C:/Users/gjy/Desktop/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/dist/index.html#/login"
-      // return `http://172.15.25.4:8050/#/main?userName=${encodeURIComponent("高金雍")}`
-      return `http://192.168.168.187:8050/#/login`
-      // return `http://172.15.25.4:8050/#/main?userName=王磊?token=abc=qwe`
-      return encodeURIComponent('http://172.15.25.4:8050/#/main?userName=高金雍')
     }
   },
   mounted() {
@@ -100,6 +91,22 @@ export default {
       plugin.setAttribute("id", "WpsDocFrame")
       return plugin
     },
+  },
+  computed: {
+    ...mapState({
+      userName: state => state.user.userName
+    }),
+    // userName() {
+    //   return this.$store.state.user.userName
+    // },
+    src () {
+      // this.$store
+      // return "file:///C:/Users/gjy/Desktop/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/dist/index.html#/login"
+      // return `http://172.15.25.4:8050/#/main?userName=${encodeURIComponent("高金雍")}`
+      return `http://192.168.168.187:8050/#/login`
+      // return `http://172.15.25.4:8050/#/main?userName=王磊?token=abc=qwe`
+      return encodeURIComponent('http://172.15.25.4:8050/#/main?userName=高金雍')
+    }
   },
   watch: {
 

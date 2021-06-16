@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container" v-if="!item.hidden">
+  <div v-if="!item.hidden">
     <!-- 没有子菜单 -->
     <template v-if="hasOneShowingChild(item)">
     <!-- <template v-if="false"> -->
@@ -9,8 +9,8 @@
     </template>
 
     <!-- 有子菜单 -->
-    <template v-else>
-      <el-submenu :index="item.path">
+    <!-- <template v-else> -->
+      <el-submenu v-else ref="subMenu" :index="item.path" popper-append-to-body>
         <template slot="title">
           <Item :icon="item.meta && item.meta.icon" :title="item.meta.title"></Item>
         </template>
@@ -20,7 +20,7 @@
           :item="item"
         />
       </el-submenu>
-    </template>
+    <!-- </template> -->
   </div>
 </template>
 
