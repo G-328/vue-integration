@@ -17,6 +17,7 @@
     "mammoth": "^1.4.17",
     "screenfull": "^5.0.2",
     "vue": "^2.6.11",
+    "vue-axios": "^3.2.5",
     "vue-router": "^3.3.4",
     "vuex": "^3.5.1",
     "vuex-persistedstate": "^4.0.0-beta.3",

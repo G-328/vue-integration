@@ -3,6 +3,10 @@
   homePage
   <!-- <p click="one">qweq</p> -->
   <el-button @click="one">qwew</el-button>
+  <div class="qwer">
+  <svg-icon icon-class="dabg"></svg-icon>
+
+  </div>
   <el-button @click="two">two</el-button>
   <p>{{userName}}</p>
   <!-- <word v-if="two === 2"></word>
@@ -117,5 +121,15 @@ export default {
 <style lang='less' scoped>
 .one {
   color: pink;
+}
+.qwer {
+  width: 100px;
+  height: 100px;
+  color: blue;
+  background: pink;
+  &:hover {
+    color: #fff;
+    background: yellow;
+  }
 }
 </style>
