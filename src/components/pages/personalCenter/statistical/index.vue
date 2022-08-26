@@ -24,16 +24,17 @@ export default {
         return {
           pageSize: 20,
           pageNum: 1,
-          total: 100
+          total: 60
         };
     },
     methods: {
       one() {
-        this.total -1 
-        this.pageNum > 1 ? this.pageNum - 1 : 1
-
+        if (this.pageNum === 1) return
+        let deleteDataLength = 10
+        if (deleteDataLength = (this.total - (this.pageSize * (this.pageNum - 1)))) {
+          this.pageNum = this.pageNum - 1
+        }
         this.total = 40
-        
       },
       handleSizeOrNum(val, type) {
         if (type === "pageSize") {
